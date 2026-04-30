@@ -1,131 +1,123 @@
-# Helix · GTM Systems Command Center
+<div align="center">
 
-A frontend prototype for an internal GTM operations console used by founders
-and RevOps engineers. Built around the idea that go-to-market is an
-engineering system: enrichment pipelines, outbound automations, CRM syncing,
-attribution, and monitoring — not a marketing site.
+# Helix
 
-The brand is intentionally generic ("Helix"). The logo is a custom inline SVG.
+### your GTM best friend
+
+A command center for go-to-market operations — built for founders and RevOps engineers who treat pipeline as a system, not a spreadsheet.
+
+[Quickstart](#quickstart) · [Features](#features) · [Stack](#stack) · [Architecture](#architecture) · [Design system](#design-system)
+
+</div>
+
+---
+
+## Why Helix
+
+Modern GTM is an engineering discipline: enrichment pipelines, outbound automations, CRM syncs, attribution models, and monitoring. Most tools dress this up as marketing software. Helix doesn't.
+
+Helix is a single, dense, keyboard-driven console that gives you the same operational visibility for revenue that you'd expect from a production SRE dashboard — with the polish of a finished product, not a generic admin template.
+
+> This repo is a fully-realized **frontend prototype**. There's no backend; every screen is wired to realistic seeded fixtures so the interactions feel real end-to-end.
+
+## Quickstart
+
+```bash
+git clone https://github.com/MihirM9/helix.git
+cd helix
+npm install
+npm run dev          # → http://localhost:5173
+```
+
+Other scripts:
+
+```bash
+npm run build        # type check + production build
+npm run preview      # serve the production build locally
+npm run lint         # eslint
+```
+
+Press <kbd>⌘</kbd><kbd>K</kbd> anywhere to open the command palette.
+
+## Features
+
+### Eight purpose-built surfaces
+
+| Page | What's inside |
+|---|---|
+| **Overview** (`/`) | Animated KPI strip with sparklines, pipeline velocity, channel attribution, conversion funnel, "what changed today" activity rail, GTM stack health, alerts, daily sequence volume. |
+| **Enrichment** (`/enrichment`) | 8-stage pipeline (source → validate → enrich person → enrich company → dedupe → score → route → sync), provider stack, live records table, lead drawer with score breakdown, firmographics, provenance, and pipeline timeline. |
+| **Sequences** (`/sequences`) | Multi-sequence sidebar, step builder with email / LinkedIn / wait / branch nodes, A/B variant comparisons, personalization variables, intent detection, per-step metrics. |
+| **Email Finder** (`/finder`) | Bulk email discovery, verification status, deliverability indicators. |
+| **Pipeline** (`/pipeline`) | CRM Kanban across 5 stages, per-CRM sync badges, conflict surfacing, deal table with health/sync state, deal drawer with activity timeline and 14-day touch heatmap. |
+| **Analytics** (`/analytics`) | Filter chips with motion transitions, conversion funnel, pipeline health radar (6 axes), cohort retention with intensity shading, source attribution, segment velocity, sequence performance. |
+| **Workflows** (`/workflows`) | Connected workflow grid, node graph for selected workflow, run log table, full GTM stack provider table (uptime / p95 / success), and a "manual handoffs → automated" before/after column. |
+| **Data Quality** (`/data-quality`) | Trust score with weighted dimensions, issue volume mini stack chart, open issues table, 8-monitor grid, broken-automations list. |
+
+### Power-user details
+
+- **Command palette** (<kbd>⌘</kbd><kbd>K</kbd>) — fuzzy search over pages, alerts, and creation flows. Arrow keys + return.
+- **Theme** — dark by default; toggle in the top bar, persists in `localStorage`. Tokens live in `src/index.css`.
+- **Animated counters** — `useMotionValue`-driven KPIs, color follows delta direction, paired with sparklines.
+- **Live status pulses** for active providers and running workflows.
+- **Detail drawers** — leads and deals open into full drawers with inline score bars, provenance, and vertical activity timelines.
+- **Filter chips** with motion-based add/remove transitions.
+- **Cohort table** uses intensity shading for retention readability.
+- **Pipeline health radar** with 6 weighted axes.
+- **Tabular numerics** everywhere data is shown.
 
 ## Stack
 
 - **Vite + React 19 + TypeScript**
-- **Tailwind CSS v3** with a custom token system (`src/index.css`,
-  `tailwind.config.js`)
-- **React Router v7** for page navigation
-- **Recharts** for charts (with a custom theme/tooltip in
-  `src/components/charts/ChartTheme.tsx`)
-- **Framer Motion** for tasteful transitions
-- **Lucide React** for icons
+- **Tailwind CSS v3** with a custom token system
+- **React Router v7** for navigation
+- **Recharts** with a custom theme + tooltip
+- **Framer Motion** for transitions
+- **Lucide** for icons
 
-No backend — all data is realistic seeded fixtures in `src/data/fixtures.ts`.
+No backend. All data is seeded in `src/data/fixtures.ts`.
 
-## Pages
-
-1. **Overview** (`/`) — KPI strip with animated counters and sparklines, pipeline
-   velocity, channel attribution, conversion funnel, "what changed today"
-   activity rail, GTM stack health, alerts, and a daily sequences chart.
-2. **Enrichment** (`/enrichment`) — 8-stage enrichment pipeline visualization
-   (source → validate → enrich · person → enrich · company → dedupe → score →
-   route → sync), provider stack panel, live records table, and a lead detail
-   drawer with score breakdown, firmographics, data provenance, and pipeline
-   timeline.
-3. **Sequences** (`/sequences`) — Multi-sequence sidebar, step builder with
-   email / LinkedIn / wait / branch nodes, A/B variant comparisons,
-   personalization variables, intent detection, and per-step metrics.
-4. **Pipeline** (`/pipeline`) — CRM Kanban across 5 stages, sync status badges
-   per CRM, conflict surfacing, deal table with health and sync state, and a
-   deal detail drawer with activity timeline and 14-day touch heatmap.
-5. **Analytics** (`/analytics`) — Filter chips with smooth state transitions,
-   conversion funnel, pipeline health radar, cohort retention table (intensity
-   shading), source attribution, segment velocity chart, sequence performance
-   table.
-6. **Workflows** (`/workflows`) — Connected workflow grid, node graph for the
-   selected workflow, run log table, full GTM stack provider table with
-   uptime/p95/success, and a "manual handoffs · automated" before/after column.
-7. **Data Quality** (`/data-quality`) — Trust score with weighted dimensions,
-   issue volume mini stack chart, open-issues table, 8-monitor grid, and a
-   broken-automations list.
-
-## Power-user details
-
-- **Command palette** (`⌘K`) — fuzzy search over pages, alerts, and creation
-  flows. Arrow keys + return.
-- **Theme** — dark mode is default; toggle in the top bar. Persists in
-  localStorage. Tokens defined in `src/index.css`.
-- **Animated KPI counters** — `useMotionValue` + sparkline, color follows
-  delta direction.
-- **Live status pulses** for live providers and active workflows.
-- **Drawers** for lead and deal detail with inline score bars, provenance
-  scoring, and a vertical activity timeline.
-- **Filter chips** with motion-based add/remove.
-- **Cohort table** uses intensity shading for retention.
-- **Pipeline health radar** with 6 weighted axes.
-- **Tabular numerics** everywhere data is shown.
-
-## Design system
-
-- Custom typography scale tuned for compact data UIs (12.5–13px base, 22px
-  page titles).
-- Single accent color: burnt orange (`#EA580C` in light, `#FF6421` in dark).
-- Refined border radii (3–8px) — no overly soft cards.
-- Strict spacing system on a 4px grid.
-- Visible focus rings for keyboard nav.
-- Skeleton class (`.skeleton`) and pulse keyframes available globally.
-
-## Running
-
-```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # type check + production build
-npm run preview  # preview the production build
-```
-
-## Project layout
+## Architecture
 
 ```
 src/
-├── App.tsx               # routes
-├── main.tsx              # bootstrap (theme, router)
-├── index.css             # tokens, base, components, utilities
+├── App.tsx                     # routes
+├── main.tsx                    # bootstrap (theme, router)
+├── index.css                   # tokens, base, components, utilities
 ├── lib/
-│   ├── theme.tsx         # ThemeProvider · localStorage · system pref
-│   └── utils.ts          # cn(), number/currency formatters, seeded random
-├── data/fixtures.ts      # all demo data (leads, deals, sequences, etc.)
+│   ├── theme.tsx               # ThemeProvider · localStorage · system pref
+│   └── utils.ts                # cn(), number/currency formatters, seeded random
+├── data/
+│   └── fixtures.ts             # all demo data (leads, deals, sequences, …)
 ├── components/
-│   ├── Logo.tsx          # custom inline SVG mark
-│   ├── PageHeader.tsx    # sticky page titlebar with eyebrow + meta + actions
-│   ├── charts/ChartTheme.tsx  # chart color hook + custom Tooltip
+│   ├── Logo.tsx                # custom inline SVG mark
+│   ├── PageHeader.tsx          # sticky titlebar with eyebrow + meta + actions
+│   ├── charts/
+│   │   └── ChartTheme.tsx      # chart color hook + custom Tooltip
 │   ├── layout/
 │   │   ├── AppShell.tsx
 │   │   ├── Sidebar.tsx
 │   │   ├── TopBar.tsx
 │   │   └── CommandPalette.tsx
-│   └── ui/
-│       ├── Avatar.tsx
-│       ├── Badge.tsx
-│       ├── Button.tsx
-│       ├── Card.tsx
-│       ├── Drawer.tsx
-│       ├── EmptyState.tsx
-│       ├── KPI.tsx
-│       ├── Skeleton.tsx
-│       ├── Sparkline.tsx
-│       └── StatusDot.tsx
-└── pages/
-    ├── Overview.tsx
-    ├── Enrichment.tsx
-    ├── Sequences.tsx
-    ├── Pipeline.tsx
-    ├── Analytics.tsx
-    ├── Workflows.tsx
-    └── DataQuality.tsx
+│   └── ui/                     # Avatar, Badge, Button, Card, Drawer,
+│                               # EmptyState, KPI, Skeleton, Sparkline, StatusDot
+└── pages/                      # Overview, Enrichment, Sequences, EmailFinder,
+                                # Pipeline, Analytics, Workflows, DataQuality
 ```
 
-## Notes on copy
+## Design system
 
-All content is operational shorthand — "Sync degraded", "12 records need
-review", "Reply rate up 18%", "2 providers failing fallback" — meant to feel
-like an internal product used daily. There is no marketing copy or lorem
-ipsum.
+- Compact data-UI typography scale — 12.5–13px base, 22px page titles.
+- Single accent color: burnt orange (`#EA580C` light, `#FF6421` dark).
+- Refined border radii (3–8px) — no overly soft cards.
+- Strict spacing on a 4px grid.
+- Visible focus rings throughout for keyboard navigation.
+- Global `.skeleton` class and pulse keyframes.
+
+## A note on copy
+
+Every string is operational shorthand — *"Sync degraded"*, *"12 records need review"*, *"Reply rate up 18%"*, *"2 providers failing fallback"*. The product reads like an internal tool used every day, because that's what it's pretending to be. No marketing copy. No lorem ipsum.
+
+## License
+
+Prototype / portfolio project. Reach out before reuse.
