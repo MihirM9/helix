@@ -10,6 +10,8 @@ A command center for go-to-market operations — built for founders and RevOps e
 
 </div>
 
+![Helix — Lead enrichment pipeline](docs/screenshots/enrichment.png)
+
 ---
 
 ## Why Helix
