@@ -1,0 +1,102 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: [
+          "InterVariable",
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "sans-serif",
+        ],
+        mono: [
+          "JetBrains Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "monospace",
+        ],
+      },
+      fontSize: {
+        "2xs": ["10.5px", { lineHeight: "14px", letterSpacing: "0.02em" }],
+        xs: ["11px", { lineHeight: "16px" }],
+        sm: ["12.5px", { lineHeight: "18px" }],
+        base: ["13px", { lineHeight: "20px" }],
+        md: ["14px", { lineHeight: "20px" }],
+        lg: ["15px", { lineHeight: "22px" }],
+        xl: ["18px", { lineHeight: "24px" }],
+        "2xl": ["22px", { lineHeight: "28px", letterSpacing: "-0.01em" }],
+        "3xl": ["28px", { lineHeight: "32px", letterSpacing: "-0.02em" }],
+        "4xl": ["36px", { lineHeight: "40px", letterSpacing: "-0.025em" }],
+      },
+      colors: {
+        bg: "rgb(var(--bg) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        "surface-2": "rgb(var(--surface-2) / <alpha-value>)",
+        "surface-3": "rgb(var(--surface-3) / <alpha-value>)",
+        elevated: "rgb(var(--elevated) / <alpha-value>)",
+        line: "rgb(var(--line) / <alpha-value>)",
+        "line-strong": "rgb(var(--line-strong) / <alpha-value>)",
+        fg: "rgb(var(--fg) / <alpha-value>)",
+        "fg-2": "rgb(var(--fg-2) / <alpha-value>)",
+        "fg-3": "rgb(var(--fg-3) / <alpha-value>)",
+        "fg-4": "rgb(var(--fg-4) / <alpha-value>)",
+        accent: "rgb(var(--accent) / <alpha-value>)",
+        "accent-fg": "rgb(var(--accent-fg) / <alpha-value>)",
+        "accent-soft": "rgb(var(--accent-soft) / <alpha-value>)",
+        success: "rgb(var(--success) / <alpha-value>)",
+        warning: "rgb(var(--warning) / <alpha-value>)",
+        danger: "rgb(var(--danger) / <alpha-value>)",
+        info: "rgb(var(--info) / <alpha-value>)",
+      },
+      borderRadius: {
+        xs: "3px",
+        sm: "4px",
+        DEFAULT: "5px",
+        md: "6px",
+        lg: "8px",
+        xl: "10px",
+      },
+      boxShadow: {
+        xs: "0 1px 2px 0 rgb(0 0 0 / 0.04)",
+        sm: "0 1px 2px 0 rgb(0 0 0 / 0.05), 0 1px 1px 0 rgb(0 0 0 / 0.03)",
+        DEFAULT:
+          "0 1px 2px 0 rgb(0 0 0 / 0.05), 0 4px 12px -2px rgb(0 0 0 / 0.06)",
+        pop: "0 8px 24px -4px rgb(0 0 0 / 0.12), 0 2px 6px -1px rgb(0 0 0 / 0.06)",
+        "ring-accent": "0 0 0 2px rgb(var(--accent) / 0.35)",
+      },
+      animation: {
+        "fade-in": "fadeIn 200ms ease-out",
+        "slide-up": "slideUp 240ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "slide-in-right": "slideInRight 280ms cubic-bezier(0.2, 0.8, 0.2, 1)",
+        shimmer: "shimmer 1.6s linear infinite",
+        pulseDot: "pulseDot 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+      },
+      keyframes: {
+        fadeIn: { "0%": { opacity: 0 }, "100%": { opacity: 1 } },
+        slideUp: {
+          "0%": { opacity: 0, transform: "translateY(6px)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
+        slideInRight: {
+          "0%": { opacity: 0, transform: "translateX(20px)" },
+          "100%": { opacity: 1, transform: "translateX(0)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        pulseDot: {
+          "0%, 100%": { opacity: 1, transform: "scale(1)" },
+          "50%": { opacity: 0.55, transform: "scale(0.92)" },
+        },
+      },
+    },
+  },
+  plugins: [],
+};
